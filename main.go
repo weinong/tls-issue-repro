@@ -4,7 +4,6 @@ import (
 	"crypto/tls"
 	"flag"
 	"fmt"
-	"io"
 	"net/http"
 )
 
@@ -44,13 +43,7 @@ func main() {
 		fmt.Println("err:", err)
 		return
 	}
-	defer resp.Body.Close()
-	_, err = io.ReadAll(resp.Body)
-	if err != nil {
-		fmt.Println("err in reading response body:", err)
-		return
-	}
+
 	fmt.Println("http response status code", resp.StatusCode)
 	fmt.Println("http response header:", resp.Header)
-
 }
