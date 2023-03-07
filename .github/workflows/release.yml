@@ -38,9 +38,14 @@ jobs:
         GOARCH: amd64
       run: make
 
+    - name: Zip
+      uses: montudor/action-zip@v1
+      with:
+        args: zip -qq tls-issue-repro.zip bin
+
     - name: Publish
       uses: skx/github-action-publish-binaries@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        args: bin/windows_amd64/tls-issue-repro.exe bin/darwin_amd64/tls-issue-repro bin/linux_amd64/tls-issue-repro
+        args: tls-issue-repro.zip
